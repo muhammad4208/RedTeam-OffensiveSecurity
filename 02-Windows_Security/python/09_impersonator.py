@@ -61,7 +61,7 @@ class PRIVILEGE_SET(ctypes.Structure):
     ("Control", DWORD),
     ("Privileges", LUID_AND_ATTRIBUTES),
     ]
- 
+
 # Token Set
 class TOKEN_PRIVILEGES(ctypes.Structure):
     _fields_ = [
@@ -76,7 +76,7 @@ class SECURITY_ATTRIBUTES(ctypes.Structure):
     ("lpSecurityDescriptor", HANDLE),
     ("nInheritHandle", BOOL),
     ]
- 
+
 # Structure for Star        
 class STARTUPINFO(ctypes.Structure):
     _fields_ = [
@@ -113,7 +113,7 @@ class PROCESS_INFORMATION(ctypes.Structure):
 def enablePrivilege(priv, handle):
     # 1) Use the LookupPrivilegeValueW API Call to get the LUID based on the String Privilege Name
     # 2) Setup a PRIVILEGE_SET for the PrivilegeCheck Call to be used later - We need the LUID to be used
-    
+
     # BOOL PrivilegeCheck(
     #   HANDLE         ClientToken,
     #   PPRIVILEGE_SET RequiredPrivileges,
@@ -123,7 +123,7 @@ def enablePrivilege(priv, handle):
     requiredPrivileges.PrivilegeCount = 1   # We are only looking at 1 privilege at a time
     requiredPrivileges.Privileges = LUID_AND_ATTRIBUTES()   # Setup a new LUID_AND_ATTRIBUTES
     requiredPrivileges.Privileges.Luid = LUID() # Setup a new LUID inside of the LUID_AND_ATTRIBUTES structure
-    
+
     # BOOL LookupPrivilegeValueW(
     #   LPCWSTR lpSystemName,
     #   LPCWSTR lpName,
@@ -131,7 +131,7 @@ def enablePrivilege(priv, handle):
     # );
     lpSystemName = None
     lpName = priv
-    
+
     # Issue the call to configure the LUID with the Systems Value of that privilege
     response = a_handle.LookupPrivilegeValueW(lpSystemName, lpName, ctypes.byref(requiredPrivileges.Privileges.Luid))
 
@@ -188,14 +188,14 @@ def enablePrivilege(priv, handle):
         BufferLength, 
         ctypes.byref(PreviousState),
         ctypes.byref(ReturnLength))
-        
+
     # Error Handling
     if response > 0:
         print("[INFO] AdjustTokenPrivileges Enabled: {0}".format(priv))
     else:
         print("[ERROR] AdjustTokenPrivileges Disabled: {0}. [-] Error Code: {0}".format(priv, k_handle.GetLastError()))
         return 1
-        
+
     return 0
 
 # [FUNCTION] Open Process
@@ -288,7 +288,7 @@ response = enablePrivilege("SEDebugPrivilege", currentProcessHandle)
 if response != 0:
     print("[ERROR] Failed to Enable Privileges!")
     exit(1)
-    
+
 # Duplicate Token On Hooked Process
 hExistingToken = ctypes.c_void_p()
 dwDesiredAccess = TOKEN_ALL_ACCESS

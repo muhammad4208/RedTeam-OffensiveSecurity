@@ -17,7 +17,7 @@ response = user_handle.MessageBoxW(hWnd, lpText, lpCaption, uType)
 error = kernel_handle.GetLastError()
 if error != 0:
     print("[-] Error Code: {0}".format(error))
-    
+
 if response == 1:
     print("[+] User Clicked OK")
 elif response == 2:

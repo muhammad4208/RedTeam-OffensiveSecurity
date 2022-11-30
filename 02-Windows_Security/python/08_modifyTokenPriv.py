@@ -59,14 +59,14 @@ class PRIVILEGE_SET(ctypes.Structure):
     ("Control", DWORD),
     ("Privileges", LUID_AND_ATTRIBUTES),
     ]
- 
+
 # Token Set
 class TOKEN_PRIVILEGES(ctypes.Structure):
     _fields_ = [
     ("PrivilegeCount", DWORD),
     ("Privileges", LUID_AND_ATTRIBUTES),
     ]
- 
+
 # FindWindowA
 #
 #HWND FindWindowA(
@@ -86,7 +86,7 @@ if hWnd == 0:
     print("[-] Error Code: {0} - No Handle Obtained...".format(error))
 else:
     print("[+] FindWindow Handle Obtained:", hWnd)
-    
+
 # GetWindowThreadProcessId
 #
 # DWORD GetWindowThreadProcessId(
@@ -160,7 +160,7 @@ if response > 0:
     print("[+] LUID Found.")
 else:
     print("[-] Error Code: {0} - No Privilieged Token Obtained...".format(error))
-    
+
 print("[+] LUID High: {0}, LUID Low: {1}".format(lpLuid.HighPart, lpLuid.LowPart))
 
 # PrivilegeCheck
