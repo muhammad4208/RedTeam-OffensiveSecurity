@@ -37,7 +37,7 @@ class STARTUPINFOA(ctypes.Structure):
         ("hStdOutput", HANDLE),
         ("hStdError", HANDLE),
         ]
-        
+
 # BOOL CreateProcessW(
 #   LPCWSTR               lpApplicationName,
 #   LPWSTR                lpCommandLine,
@@ -50,7 +50,7 @@ class STARTUPINFOA(ctypes.Structure):
 #   LPSTARTUPINFOW        lpStartupInfo,
 #   LPPROCESS_INFORMATION lpProcessInformation
 # );
-        
+
 # CreateProcessW
 lpApplicationName = "C:\\Windows\System32\cmd.exe"
 lpCommandLine = None
@@ -68,7 +68,7 @@ lpStartupInfo.dwFlags = 0x1
 
 # ProcessInformation (*If I don't sepcify the value, it will return as NULL)
 lpProcessInformation = PROCESS_INFORMATION()   
-        
+
 response = k_handle.CreateProcessW(
     lpApplicationName,
     lpCommandLine,

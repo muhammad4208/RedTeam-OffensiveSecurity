@@ -35,7 +35,7 @@ if hWnd == 0:
     print("[-] Error Code: {0} - No Handle Obtained...".format(error))
 else:
     print("[+] FindWindow Handle Obtained:", hWnd)
-    
+
 # GetWindowThreadProcessId
 #
 # DWORD GetWindowThreadProcessId(

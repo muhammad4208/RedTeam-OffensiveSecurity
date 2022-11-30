@@ -39,7 +39,7 @@ if error != 0:
     print("[-] No AccessRight. Handle was not created.")
     print("[-] Error Code: {0}".format(error))
 	exit(1)
-   
+
 if response <= 0:
     print("[-] Handle was not created.")
 else:

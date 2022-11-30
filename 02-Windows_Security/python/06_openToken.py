@@ -31,7 +31,7 @@ TOKEN_ALL_ACCESS = ( STANDARD_RIGHTS_REQUIRED |
                      TOKEN_ADJUST_GROUPS      |
                      TOKEN_ADJUST_DEFAULT     |
                      TOKEN_ADJUST_SESSIONID)
-        
+
 # FindWindowA
 #
 #HWND FindWindowA(
@@ -51,7 +51,7 @@ if hWnd == 0:
     print("[-] Error Code: {0} - No Handle Obtained...".format(error))
 else:
     print("[+] FindWindow Handle Obtained:", hWnd)
-    
+
 # GetWindowThreadProcessId
 #
 # DWORD GetWindowThreadProcessId(
